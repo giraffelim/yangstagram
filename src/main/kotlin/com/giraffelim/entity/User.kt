@@ -3,6 +3,7 @@ package com.giraffelim.entity
 import com.giraffelim.annotation.AllOpen
 import com.giraffelim.constant.Gender
 import com.giraffelim.constant.Role
+import com.giraffelim.entity.audit.BaseEntity
 import javax.persistence.*
 
 @AllOpen
@@ -35,4 +36,4 @@ class User(
 
     @Enumerated(EnumType.STRING)
     var role: Role? = null
-)
+): BaseEntity()
