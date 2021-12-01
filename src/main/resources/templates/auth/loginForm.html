@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Yangstagram</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- css -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+
+<body>
+    <main id="login">
+        <div class="login__column">
+            <img src="/images/phoneImage.png" />
+        </div>
+        <div class="login__column">
+            <div class="login__box">
+                <img src="/images/yangstagram_logo.png" />
+
+                <form action="feed.html" method="get" class="login__form">
+                    <input type="text" name="username" style="margin-bottom: 5px;" placeholder="전화번호, 사용자 이름 또는 이메일" required>
+                    <input type="password" name="password" style="margin-bottom: 10px;" placeholder="비밀번호" required>
+                    <input type="submit" value="로그인">
+                </form>
+
+                <span class="login__divider"> or </span>
+
+                <a href="http://facebook.com" class="login__fb-link">
+                    <i class="fa fa-facebook-square"></i> Log in with Facebook</a>
+                <a href="#" class="login__small-link">Forgot password?</a>
+            </div>
+
+            <div class="login__box">
+				<span class="login__text"> Don't have an account? <br />
+				</span> <a class="login__blue-link" href="#">Sign up</a>
+            </div>
+
+            <div class="login__t-box">
+                <span class="login__text"> Get the app. </span>
+                <div class="login__appstores">
+                    <img src="/images/ios.png" class="login__appstore" /> <img src="/images/android.png" class="login__appstore" />
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div th:replace="fragments/footer::footer"></div>
+
+</body>
+
+</html>
