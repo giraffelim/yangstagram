@@ -3,7 +3,9 @@ package com.giraffelim.entity
 import com.giraffelim.annotation.AllOpen
 import com.giraffelim.constant.Gender
 import com.giraffelim.constant.Role
+import com.giraffelim.dto.UserFormDTO
 import com.giraffelim.entity.audit.BaseEntity
+import org.springframework.security.crypto.password.PasswordEncoder
 import javax.persistence.*
 
 @AllOpen
@@ -36,4 +38,14 @@ class User(
 
     @Enumerated(EnumType.STRING)
     var role: Role? = null
-): BaseEntity()
+): BaseEntity() {
+    companion object {
+        fun createUser(userFormDTO: UserFormDTO, passwordEncoder: PasswordEncoder) = User(
+            username = userFormDTO.username,
+            password = passwordEncoder.encode(userFormDTO.password),
+            name = userFormDTO.name,
+            email = userFormDTO.email,
+            role = Role.USER
+        )
+    }
+}
