@@ -23,6 +23,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             formLogin {
                 loginPage = "/auth/login"
                 defaultSuccessUrl("/", true)
+                failureUrl = "/auth/login/error"
             }
             logout {
                 logoutUrl = "/auth/logout"

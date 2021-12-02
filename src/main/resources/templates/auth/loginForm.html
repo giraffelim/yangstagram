@@ -14,6 +14,12 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .error {
+            color: #bd2130;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 
@@ -26,10 +32,11 @@
             <div class="login__box">
                 <img src="/images/yangstagram_logo.png" />
 
-                <form action="feed.html" method="get" class="login__form">
-                    <input type="text" name="username" style="margin-bottom: 5px;" placeholder="전화번호, 사용자 이름 또는 이메일" required>
+                <form th:action="@{/auth/login}" method="post" class="login__form">
+                    <input type="text" name="username" style="margin-bottom: 5px;" placeholder="사용자 이름" required>
                     <input type="password" name="password" style="margin-bottom: 10px;" placeholder="비밀번호" required>
                     <input type="submit" value="로그인">
+                    <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
                 </form>
 
                 <span class="login__divider"> or </span>
