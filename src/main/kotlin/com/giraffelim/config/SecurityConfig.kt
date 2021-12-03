@@ -17,7 +17,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             csrf { disable() }
             authorizeRequests {
                 authorize("/auth/**", permitAll)
-                authorize("/users/**", permitAll)
+                authorize("/users/new", permitAll)
                 authorize("/**", authenticated)
             }
             formLogin {
