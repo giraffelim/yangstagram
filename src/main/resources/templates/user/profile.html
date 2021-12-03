@@ -4,6 +4,30 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            $(".fa-lg").click(function() {
+                $(".profile__overlay").fadeIn();
+            });
+
+            $("#cancel").click(function () {
+                $(".profile__overlay").fadeOut();
+            });
+
+            //이미지 클릭시 업로드창 실행
+            $('#profile_image').click(function() {
+                $("input[name='profileImage']").click();
+            })
+
+            //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+            $("input[name='profileImage']").change(function(e) {
+                $("#frm_profile_img").submit();
+            })
+        });
+    </script>
+</th:block>
+
 <div layout:fragment="content">
     <main id="profile" th:object="${userInfo}">
         <header class="profile__header">
@@ -13,14 +37,16 @@
                 </form>
                 <img src="/images/avatar.jpg" id="profile_image" style="cursor: pointer" />
             </div>
+
             <div class="profile__info">
                 <div class="profile__title">
                     <h1 th:text="${username}"></h1>
-                    <a th:href="@{/users/profileEdit}">
-                        <button class="profile_edit_btn">팔로우</button>
-                        <button class="profile_edit_btn">회원수정</button>
+                    <a href="/image/uploadForm">
                         <button class="profile_edit_btn">사진등록</button>
-                    </a> <i class="fa fa-cog fa-lg"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-cog fa-lg"></i>
+                    </a>
                 </div>
                 <ul class="profile__stats">
                     <li class="profile__stat">
@@ -42,6 +68,7 @@
                     <a href="http://serranoarevalo.com" class="profile__link">serranoarevalo.com</a>
                 </p>
             </div>
+
         </header>
         <div class="profile__photo-grid">
             <div class="profile__photo-row">
@@ -155,24 +182,11 @@
     <div class="profile__overlay">
         <i class="fa fa-times"></i>
         <div class="profile__overlay-container">
-            <a href="#" class="profile__overlay-link">Change password</a>
-            <a href="#" class="profile__overlay-link" id="logout">Log Out</a>
-            <a href="#" class="profile__overlay-link" id="cancel">Cancel</a>
+            <a href="/user/profileEdit" class="profile__overlay-link">회원 수정</a>
+            <a href="/auth/logout" class="profile__overlay-link" id="logout">로그아웃</a>
+            <a href="#" class="profile__overlay-link" id="cancel">취소</a>
         </div>
     </div>
 </div>
-
-<script>
-    $(function() {
-        //이미지 클릭시 업로드창 실행
-        $('#profile_image').click(function() {
-            $("input[name='profileImage']").click();
-        })
-        //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
-        $("input[name='profileImage']").change(function(e) {
-            $("#frm_profile_img").submit();
-        })
-    })
-</script>
 
 </html>
