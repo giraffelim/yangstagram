@@ -1,5 +1,6 @@
 package com.giraffelim.service
 
+import com.giraffelim.dto.UserProfileDTO
 import com.giraffelim.entity.User
 import com.giraffelim.repository.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
@@ -24,6 +25,11 @@ class UserService(
         if (findUser != null) {
             throw IllegalStateException("이미 가입된 회원입니다.")
         }
+    }
+
+    fun getUserProfile(username: String, loginUsername: String): UserProfileDTO {
+        val userEntity = userRepository.findByUsername(username) ?: throw UsernameNotFoundException(username)
+        return UserProfileDTO.create(userEntity)
     }
 
     override fun loadUserByUsername(username: String): UserDetails {
